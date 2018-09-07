@@ -8,6 +8,9 @@
   "license": "MIT",
   "devDependencies": {
     "chai": "^4.1.2",
+    "eslint": "^5.5.0",
+    "eslint-mocha": "^0.4.0",
+    "eslint-plugin-mocha": "^5.2.0",
     "mocha": "^5.2.0"
   }
 }
