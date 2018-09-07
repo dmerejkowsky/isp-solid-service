@@ -4,11 +4,8 @@ class User {
   }
 
   name() {
-    return this.data.trial
-      ? this.data.tempLogin
-      : this.data.name;
+      return this.data.name;
   }
-
 
   ldapLogin() {
     const { enterpriseName, name } = this.data;

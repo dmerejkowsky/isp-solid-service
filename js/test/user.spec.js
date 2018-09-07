@@ -34,7 +34,6 @@ describe('users', () => {
   context('Admin', () => {
     beforeEach(() => {
       const user = new User(this.data);
-      this.data.admin = true;
       this.admin = new Admin(user);
     });
     it('should have a LDAP login', () => {
@@ -46,7 +45,6 @@ describe('users', () => {
   context('Trial User', () => {
 
     beforeEach(() => {
-      this.data.trial = true;
       const now = new Date().getTime();
       const twoDaysAgo = new Date(now - 1000 * 60 * 60 * 24 * 2);
       this.data.tempLogin = 'temp login';

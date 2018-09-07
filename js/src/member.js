@@ -9,7 +9,6 @@ class Member {
     return `${address1}\n${address2}`;
   }
 
-  // Sadly, duplication here!
   name() {
       return this.data.name;
   }
