@@ -9,10 +9,6 @@ class User {
       : this.data.name;
   }
 
-  address() {
-    const { address1, address2 } = this.data;
-    return `${address1}\n${address2}`;
-  }
 
   ldapLogin() {
     const { enterpriseName, name } = this.data;
@@ -29,5 +25,6 @@ class User {
     return Math.floor(milis / (1000 * 60 * 60 * 24));
   }
 }
+
 
 module.exports = User;
