@@ -10,7 +10,6 @@ describe('users', () => {
   beforeEach(() => {
     this.data = {
       name: 'john',
-      enterpriseName: 'fooCorp',
     }
   });
 
