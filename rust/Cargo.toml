@@ -1,0 +1,6 @@
+[package]
+name = "isp-solid-service"
+version = "0.1.0"
+authors = ["Dimitri Merejkowsky <d.merej@gmail.com>"]
+
+[dependencies]
