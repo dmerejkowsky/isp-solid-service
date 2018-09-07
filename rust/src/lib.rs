@@ -1,88 +1,13 @@
-use std::time::Instant;
+mod db;
 
-// Assume this comes from the db
-#[derive(Default)]
-pub struct UserData {
-    pub enterprise_name: String,
-    pub name: String,
-    pub temp_login: String,
-    pub address1: String,
-    pub address2: String,
-    pub created_at: Time,
-    pub admin: bool,
-    pub trial: bool,
-}
+pub mod user;
 
-// We need our own type to have a default created_at
-pub struct Time {
-    instant: Instant,
-}
-
-impl Time {
-    pub fn new() -> Time {
-        Time {
-            instant: Instant::now(),
-        }
-    }
-    pub fn get(&self) -> Instant {
-        self.instant
-    }
-}
-
-impl Default for Time {
-    fn default() -> Time {
-        Time::new()
-    }
-}
-
-impl From<Instant> for Time {
-    fn from(instant: Instant) -> Self {
-        Time { instant }
-    }
-}
-
-pub struct User {
-    data: Box<UserData>,
-}
-
-impl User {
-    pub fn new(data: UserData) -> Self {
-        User {
-            data: Box::new(data),
-        }
-    }
-
-    pub fn name(&self) -> &str {
-        if self.data.trial {
-            &self.data.temp_login
-        } else {
-            &self.data.name
-        }
-    }
-
-    pub fn address(&self) -> String {
-        let data = &self.data;
-        format!("{}\n{}", &data.address1, &data.address2)
-    }
-
-    pub fn ldap_login(&self) -> String {
-        let data = &self.data;
-        format!("{}/admin/{}", &data.enterprise_name, &self.name())
-    }
-
-    pub fn days_left(&self) -> u64 {
-        let data = &self.data;
-        let now = Instant::now();
-        let created_at: Instant = data.created_at.get();
-        let elapsed_secs = (now - created_at).as_secs();
-        elapsed_secs / 24 / 60 / 60
-    }
-}
 
 #[cfg(test)]
 mod tests {
-    use super::*;
-    use std::time::Duration;
+    use super::db::UserData;
+    use super::user::User;
+    use std::time::{Duration,Instant};
 
     #[test]
     fn has_a_name() {
