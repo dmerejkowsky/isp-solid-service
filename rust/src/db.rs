@@ -24,7 +24,7 @@ impl Time {
             instant: Instant::now(),
         }
     }
-    pub fn get(&self) -> Instant {
+    pub fn as_instant(&self) -> Instant {
         self.instant
     }
 }

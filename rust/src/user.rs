@@ -29,7 +29,7 @@ impl User {
     pub fn days_left(&self) -> u64 {
         let data = &self.data;
         let now = Instant::now();
-        let created_at: Instant = data.created_at.get();
+        let created_at: Instant = data.created_at.as_instant();
         let elapsed_secs = (now - created_at).as_secs();
         elapsed_secs / 24 / 60 / 60
     }
