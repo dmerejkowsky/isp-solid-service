@@ -1,12 +1,22 @@
 mod db;
 
-pub mod user;
+mod user;
+mod admin;
+mod member;
+mod trial_user;
+
+pub use user::User;
+pub use admin::Admin;
+pub use member::Member;
+pub use trial_user::TrialUser;
 
 
 #[cfg(test)]
 mod tests {
     use super::db::UserData;
-    use super::user::User;
+    use super::User;
+    use super::Member;
+    use super::Admin;
     use std::time::{Duration,Instant};
 
     #[test]
@@ -23,8 +33,9 @@ mod tests {
         data.address1 = "452 Wilson Summit".into();
         data.address2 = "East Dawnshier, AK 96919".into();
         let user = User::new(data);
+        let member = Member::new(user);
         assert_eq!(
-            user.address(),
+            member.address(),
             "452 Wilson Summit\nEast Dawnshier, AK 96919"
         );
     }
@@ -36,7 +47,8 @@ mod tests {
         data.enterprise_name = "fooCorp".into();
         data.admin = true;
         let user = User::new(data);
-        assert_eq!(user.ldap_login(), "fooCorp/admin/john");
+        let admin = Admin::new(user);
+        assert_eq!(admin.ldap_login(), "fooCorp/admin/john");
     }
 
     #[test]

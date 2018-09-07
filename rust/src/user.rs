@@ -2,7 +2,7 @@ use db::UserData;
 use std::time::Instant;
 
 pub struct User {
-    data: Box<UserData>,
+    pub data: Box<UserData>,
 }
 
 impl User {
