@@ -41,13 +41,15 @@ impl From<Instant> for Time {
     }
 }
 
-pub struct User<'a> {
-    data: &'a UserData,
+pub struct User {
+    data: Box<UserData>,
 }
 
-impl<'a> User<'a> {
-    pub fn new(data: &'a UserData) -> Self {
-        User { data: data }
+impl User {
+    pub fn new(data: UserData) -> Self {
+        User {
+            data: Box::new(data),
+        }
     }
 
     pub fn name(&self) -> &str {
@@ -86,7 +88,7 @@ mod tests {
     fn has_a_name() {
         let mut data: UserData = Default::default();
         data.name = "john".into();
-        let user = User::new(&data);
+        let user = User::new(data);
         assert_eq!(user.name(), "john");
     }
 
@@ -95,7 +97,7 @@ mod tests {
         let mut data: UserData = Default::default();
         data.address1 = "452 Wilson Summit".into();
         data.address2 = "East Dawnshier, AK 96919".into();
-        let user = User::new(&data);
+        let user = User::new(data);
         assert_eq!(
             user.address(),
             "452 Wilson Summit\nEast Dawnshier, AK 96919"
@@ -108,7 +110,7 @@ mod tests {
         data.name = "john".into();
         data.enterprise_name = "fooCorp".into();
         data.admin = true;
-        let user = User::new(&data);
+        let user = User::new(data);
         assert_eq!(user.ldap_login(), "fooCorp/admin/john");
     }
 
@@ -117,7 +119,7 @@ mod tests {
         let mut data: UserData = Default::default();
         data.trial = true;
         data.temp_login = "temp login".into();
-        let user = User::new(&data);
+        let user = User::new(data);
         assert_eq!(user.name(), "temp login");
     }
 
@@ -128,7 +130,7 @@ mod tests {
         let now = Instant::now();
         let two_days_ago = now - Duration::from_secs(60 * 60 * 24 * 2);
         data.created_at = two_days_ago.into();
-        let user = User::new(&data);
+        let user = User::new(data);
         assert_eq!(user.days_left(), 2);
     }
 
