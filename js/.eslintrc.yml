@@ -25,7 +25,6 @@ rules:
   callback-return: error
   camelcase: error
   capitalized-comments: error
-  class-methods-use-this: error
   comma-dangle: 'off'
   comma-spacing:
     - error
@@ -77,8 +76,6 @@ rules:
   max-classes-per-file: error
   max-depth: error
   max-len: 'off'
-  max-lines: error
-  max-lines-per-function: error
   max-nested-callbacks: error
   max-params: error
   max-statements: error
@@ -122,9 +119,7 @@ rules:
   no-lone-blocks: error
   no-lonely-if: error
   no-loop-func: error
-  no-magic-numbers: error
   no-misleading-character-class: error
-  no-mixed-operators: error
   no-mixed-requires: error
   no-multi-assign: error
   no-multi-spaces: error
@@ -163,12 +158,10 @@ rules:
   no-sync: error
   no-tabs: error
   no-template-curly-in-string: error
-  no-ternary: error
   no-throw-literal: error
   no-trailing-spaces: error
   no-undef-init: error
   no-undefined: error
-  no-underscore-dangle: error
   no-unmodified-loop-condition: error
   no-unneeded-ternary: error
   no-unused-expressions: error
