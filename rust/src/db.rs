@@ -24,6 +24,11 @@ impl Time {
             instant: Instant::now(),
         }
     }
+
+    pub fn from_instant(instant: Instant) -> Self {
+        Time { instant }
+    }
+
     pub fn as_instant(&self) -> Instant {
         self.instant
     }
@@ -32,11 +37,5 @@ impl Time {
 impl Default for Time {
     fn default() -> Time {
         Time::new()
-    }
-}
-
-impl From<Instant> for Time {
-    fn from(instant: Instant) -> Self {
-        Time { instant }
     }
 }

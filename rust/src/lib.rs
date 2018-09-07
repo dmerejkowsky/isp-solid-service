@@ -14,7 +14,7 @@ pub use trial_user::TrialUser;
 #[cfg(test)]
 mod tests {
     use super::*;
-    use super::db::UserData;
+    use super::db::{UserData,Time};
     use std::time::{Duration,Instant};
 
     #[test]
@@ -65,7 +65,7 @@ mod tests {
         data.trial = true;
         let now = Instant::now();
         let two_days_ago = now - Duration::from_secs(60 * 60 * 24 * 2);
-        data.created_at = two_days_ago.into();
+        data.created_at = Time::from_instant(two_days_ago);
         let user = User::new(data);
         assert_eq!(user.days_left(), 2);
     }
