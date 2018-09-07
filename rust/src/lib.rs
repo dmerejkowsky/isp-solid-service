@@ -13,10 +13,8 @@ pub use trial_user::TrialUser;
 
 #[cfg(test)]
 mod tests {
+    use super::*;
     use super::db::UserData;
-    use super::User;
-    use super::Member;
-    use super::Admin;
     use std::time::{Duration,Instant};
 
     #[test]
@@ -57,7 +55,8 @@ mod tests {
         data.trial = true;
         data.temp_login = "temp login".into();
         let user = User::new(data);
-        assert_eq!(user.name(), "temp login");
+        let trial_user = TrialUser::new(user);
+        assert_eq!(trial_user.name(), "temp login");
     }
 
     #[test]

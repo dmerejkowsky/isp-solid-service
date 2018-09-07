@@ -13,11 +13,7 @@ impl User {
     }
 
     pub fn name(&self) -> &str {
-        if self.data.trial {
-            &self.data.temp_login
-        } else {
-            &self.data.name
-        }
+        &self.data.name
     }
 
     pub fn address(&self) -> String {
