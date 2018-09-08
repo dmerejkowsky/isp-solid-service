@@ -1,5 +1,5 @@
 use db::UserData;
-use user::HasData;
+use user::{HasData, NamedUser};
 
 pub struct Admin {
     data: UserData,
@@ -14,10 +14,6 @@ impl HasData for Admin {
 impl Admin {
     pub fn new(data: UserData) -> Admin {
         Admin { data }
-    }
-
-    pub fn name(&self) -> String {
-        self.data.name.clone()
     }
 
     pub fn ldap_login(&self) -> String {
