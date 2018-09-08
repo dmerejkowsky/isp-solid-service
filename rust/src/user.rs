@@ -2,14 +2,12 @@ use db::UserData;
 use std::time::Instant;
 
 pub struct User {
-    pub data: Box<UserData>,
+    pub data: UserData,
 }
 
 impl User {
     pub fn new(data: UserData) -> Self {
-        User {
-            data: Box::new(data),
-        }
+        User { data }
     }
 
     pub fn name(&self) -> &str {
