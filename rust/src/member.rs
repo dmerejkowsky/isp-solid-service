@@ -1,16 +1,20 @@
-use user::User;
+use db::UserData;
 
 pub struct Member {
-    user: User,
+    data: UserData,
 }
 
 impl Member {
-    pub fn new(user: User) -> Member {
-        Member { user }
+    pub fn new(data: UserData) -> Member {
+        Member { data }
+    }
+
+    pub fn name(&self) -> String {
+        self.data.name.clone()
     }
 
     pub fn address(&self) -> String {
-        let data = &self.user.data;
+        let data = &self.data;
         format!("{}\n{}", &data.address1, &data.address2)
     }
 }
