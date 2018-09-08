@@ -13,7 +13,7 @@ pub use trial_user::TrialUser;
 #[cfg(test)]
 mod tests {
     use super::*;
-    use super::user::NamedUser;
+    use super::user::{NamedUser,Address};
     use super::db::{UserData,Time};
     use std::time::{Duration,Instant};
 
@@ -45,6 +45,7 @@ mod tests {
         data.admin = true;
         let admin = Admin::new(data);
         assert_eq!(admin.ldap_login(), "fooCorp/admin/john");
+        // assert_eq!(admin.address(), ""); <- does not compile!
     }
 
     #[test]
@@ -54,6 +55,18 @@ mod tests {
         data.temp_login = "temp login".into();
         let trial_user = TrialUser::new(data);
         assert_eq!(trial_user.name(), "temp login");
+    }
+
+    #[test]
+    fn trial_user_has_an_adderss() {
+        let mut data: UserData = Default::default();
+        data.address1 = "452 Wilson Summit".into();
+        data.address2 = "East Dawnshier, AK 96919".into();
+        let trial_user = TrialUser::new(data);
+        assert_eq!(
+            trial_user.address(),
+            "452 Wilson Summit\nEast Dawnshier, AK 96919"
+        );
     }
 
     #[test]

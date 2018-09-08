@@ -1,6 +1,6 @@
 use db::UserData;
 use std::time::Instant;
-use user::HasData;
+use user::{AllowAddress, HasData};
 
 pub struct TrialUser {
     data: UserData,
@@ -11,6 +11,8 @@ impl HasData for TrialUser {
         &self.data
     }
 }
+
+impl AllowAddress for TrialUser {}
 
 impl TrialUser {
     pub fn new(data: UserData) -> TrialUser {
