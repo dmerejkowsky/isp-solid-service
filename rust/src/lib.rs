@@ -13,6 +13,7 @@ pub use trial_user::TrialUser;
 #[cfg(test)]
 mod tests {
     use super::*;
+    use super::user::NamedUser;
     use super::db::{UserData,Time};
     use std::time::{Duration,Instant};
 

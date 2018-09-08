@@ -1,7 +1,14 @@
 use db::UserData;
+use user::HasData;
 
 pub struct Admin {
     data: UserData,
+}
+
+impl HasData for Admin {
+    fn data(&self) -> &UserData {
+        &self.data
+    }
 }
 
 impl Admin {
