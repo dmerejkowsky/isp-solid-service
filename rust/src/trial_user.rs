@@ -1,8 +1,15 @@
 use db::UserData;
 use std::time::Instant;
+use user::HasData;
 
 pub struct TrialUser {
     data: UserData,
+}
+
+impl HasData for TrialUser {
+    fn data(&self) -> &UserData {
+        &self.data
+    }
 }
 
 impl TrialUser {
