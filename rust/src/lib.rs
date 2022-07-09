@@ -1,21 +1,20 @@
 mod db;
 
-mod user;
 mod admin;
 mod member;
 mod trial_user;
+mod user;
 
 pub use admin::Admin;
 pub use member::Member;
 pub use trial_user::TrialUser;
 
-
 #[cfg(test)]
 mod tests {
+    use super::db::{Time, UserData};
+    use super::user::{Address, NamedUser};
     use super::*;
-    use super::user::{NamedUser,Address};
-    use super::db::{UserData,Time};
-    use std::time::{Duration,Instant};
+    use std::time::{Duration, Instant};
 
     #[test]
     fn member_has_a_name() {
@@ -79,5 +78,4 @@ mod tests {
         let user = TrialUser::new(data);
         assert_eq!(user.days_left(), 2);
     }
-
 }
